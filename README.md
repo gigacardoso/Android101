@@ -24,7 +24,9 @@
 7. Graphics
 	* App that creates bubbles where you tap and pops them if you tap them again. The velocity/direction of a bubble can be changed if it is flinged
 8. Location
-	*
+	* App that gives you badges for you current position. Simple Fourquare
+9. iRemember (Project)
+	* App to put to use all that was learned before. List of Stories that have a name, video, audio, photo, date, location and time. Edition of those stories and searching for them
 
 # References
 * [1] [Android Documentation](http://developer.android.com/reference/packages.html)
