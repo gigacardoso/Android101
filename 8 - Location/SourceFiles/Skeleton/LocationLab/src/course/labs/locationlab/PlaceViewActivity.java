@@ -80,6 +80,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 //						}
 						new PlaceDownloaderTask(PlaceViewActivity.this).execute(mLastLocationReading);
 					}else {
+						PlaceViewActivity.log("You already have this location badge");
 						Toast.makeText(PlaceViewActivity.this, "You already have this location badge", Toast.LENGTH_SHORT).show();
 					}	
 				}else {
@@ -200,7 +201,7 @@ public class PlaceViewActivity extends ListActivity implements LocationListener 
 		}
 	}
 
-	private static void log(String msg) {
+	static void log(String msg) {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {

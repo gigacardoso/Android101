@@ -100,7 +100,7 @@ public class PlaceDownloaderTask extends AsyncTask<Location, Void, PlaceRecord> 
 	}
 
 	private Bitmap getFlagFromURL(String flagUrl) {
-
+		PlaceViewActivity.log("Starting Place Download");
 		InputStream in = null;
 
 		try {
