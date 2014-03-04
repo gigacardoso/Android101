@@ -21,6 +21,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -29,8 +30,7 @@ import android.util.Log;
 
 public class PlaceDownloaderTask extends AsyncTask<Location, Void, PlaceRecord> {
 
-	// TODO - put your www.geonames.org account name here.
-	private static String USERNAME = "YOUR USERNAME HERE";
+	private static String USERNAME = "giga_cardoso";
 
 	private HttpURLConnection mHttpUrl;
 	private WeakReference<PlaceViewActivity> mParent;
@@ -128,6 +128,7 @@ public class PlaceDownloaderTask extends AsyncTask<Location, Void, PlaceRecord> 
 		return BitmapFactory.decodeResource(mParent.get().getResources(), R.drawable.stub);
 	}
 
+	@SuppressLint("DefaultLocale")
 	private static PlaceRecord placeDataFromXml(String xmlString) {
 		DocumentBuilder builder;
 		String countryName = "";
