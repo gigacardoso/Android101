@@ -118,16 +118,19 @@ public class SoundRecordActivity extends Activity {
     }
 
     private void startRecording() {
+    	Log.i("debug","Creating Recorder");
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setOutputFile(mFileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-
+        Log.i("debug",mFileName);
         try {
             mRecorder.prepare();
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
+            Log.i("debug","-------------------------------------------");
+            e.printStackTrace();
         }
 
         mRecorder.start();
@@ -146,6 +149,7 @@ public class SoundRecordActivity extends Activity {
 
         OnClickListener clicker = new OnClickListener() {
             public void onClick(View v) {
+            	Log.i("debug","startRecording");
                 onRecord(mStartRecording);
                 if (mStartRecording) {
                     setText("Stop recording");
