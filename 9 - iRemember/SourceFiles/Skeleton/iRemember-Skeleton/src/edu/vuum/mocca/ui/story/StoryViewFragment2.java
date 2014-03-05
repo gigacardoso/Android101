@@ -83,7 +83,7 @@ public class StoryViewFragment extends Fragment {
 	public final static String rowIdentifyerTAG = "index";
 
 	private OnOpenWindowInterface mOpener;
-	Context mContext;
+	private Context mContext;
 
 	StoryData storyData;
 
@@ -221,65 +221,62 @@ public class StoryViewFragment extends Fragment {
 					"setUiToStoryData + storyData:" + storyData.toString());
 			titleTV.setText(String.valueOf(storyData.title).toString());
 			bodyTV.setText(String.valueOf(storyData.body).toString());
-
+			
 			String audioLinkPath = String.valueOf(storyData.audioLink).toString();
-
+			
 			// TODO - Set up audio to play back on click. For this part we can easily parse the audio
 			// as a ringtone and play it back as such. Use the RingtonManager function getRingtone on
 			// the audioLinkPath to create the ringtone
-
-			final Ringtone ringtone = RingtoneManager.getRingtone(mContext, Uri.parse(audioLinkPath));
-
-
+			Uri myUri = Uri.parse(audioLinkPath);
+			final Ringtone ringtone = null;//RingtoneManager.getRingtone(mContext, myUri);
+			
 			audioButton.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-
 					// TODO - Play the ringtone
-					ringtone.play();
+					//ringtone.play();
 				}
 			});
-
+			
 			// Display the video 
-
+			
 			String videoLinkPath = String.valueOf(storyData.videoLink).toString();
 
 			// Set up video playback using the MediaController android widget
 			// and the video view already set up in the layout file.
-
 			// TODO - Create a new MediaController for this activity 
+			
 			MediaController mc = new MediaController(mContext);
-
+			
 			// TODO - The MediaController needs an anchorview. Anchor the Media Controller
 			// to the VideoView, videoLinkView, with the function setAnchorView()
 			mc.setAnchorView(videoLinkView);
-
+			
 			// TODO - Now the VideoView, videoLinkView, needs to have a Media Controller set to it
 			// use the setMediaController function from the VideoView to set it to the new Media Controller
 			videoLinkView.setMediaController(mc);
-
+			
 			// TODO - Now we need to set the URI for the VideoView, use the setVideoURI function on the
 			//  videoLinkPath string from before.
 			videoLinkView.setVideoURI(Uri.parse(videoLinkPath));
-
+			
 			// TODO - Start the video, using the start function on the VideoView
-			videoLinkView.start();
-
-
+			//videoLinkView.start();
+			
 			// Display the image data
-
+			
 			imageNameTV.setText(String.valueOf(storyData.imageName).toString());
-
+			
 			String imageMetaDataPath = String.valueOf(storyData.imageLink).toString();
-
+			
 			// TODO - Set the URI of the ImageView to the image path stored in the string
 			// imageMetaDataPath, using the setImageURI function from the ImageView
-
-
-
+			//imageMetaDataView.setImageURI(Uri.parse(imageMetaDataPath));
+			
+			
 			Long time = Long.valueOf(storyData.storyTime);
 			storyTimeTV.setText(StoryData.FORMAT.format(time));
-
+			
 			latitudeTV.setText(Double.valueOf(storyData.latitude).toString());
 			longitudeTV.setText(Double.valueOf(storyData.longitude).toString());
 		}
@@ -298,32 +295,32 @@ public class StoryViewFragment extends Fragment {
 				R.string.story_view_deletion_dialog_message);
 
 		new AlertDialog.Builder(getActivity())
-		.setIcon(android.R.drawable.ic_dialog_alert)
-		.setTitle(R.string.story_view_deletion_dialog_title)
-		.setMessage(message)
-		.setPositiveButton(R.string.story_view_deletion_dialog_yes,
-				new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog,
-					int which) {
-				try {
-					resolver.deleteAllStoryWithRowID(storyData.KEY_ID);
-				} catch (RemoteException e) {
-					Log.e(LOG_TAG, "RemoteException Caught => "
-							+ e.getMessage());
-					e.printStackTrace();
-				}
-				mOpener.openListStoryFragment();
-				if (getResources().getBoolean(R.bool.isTablet) == true) {
-					mOpener.openViewStoryFragment(-1);
-				} else {
-					getActivity().finish();
-				}
-			}
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(R.string.story_view_deletion_dialog_title)
+				.setMessage(message)
+				.setPositiveButton(R.string.story_view_deletion_dialog_yes,
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								try {
+									resolver.deleteAllStoryWithRowID(storyData.KEY_ID);
+								} catch (RemoteException e) {
+									Log.e(LOG_TAG, "RemoteException Caught => "
+											+ e.getMessage());
+									e.printStackTrace();
+								}
+								mOpener.openListStoryFragment();
+								if (getResources().getBoolean(R.bool.isTablet) == true) {
+									mOpener.openViewStoryFragment(-1);
+								} else {
+									getActivity().finish();
+								}
+							}
 
-		})
-		.setNegativeButton(R.string.story_view_deletion_dialog_no, null)
-		.show();
+						})
+				.setNegativeButton(R.string.story_view_deletion_dialog_no, null)
+				.show();
 	}
 
 	public long getUniqueKey() {
@@ -336,7 +333,7 @@ public class StoryViewFragment extends Fragment {
 		mOpener = null;
 		resolver = null;
 	}
-
+	
 	@Override
 	public void onResume() {
 		super.onResume();
