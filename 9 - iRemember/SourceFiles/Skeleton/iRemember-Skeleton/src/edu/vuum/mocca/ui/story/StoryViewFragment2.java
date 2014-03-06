@@ -74,7 +74,7 @@ import edu.vanderbilt.mooc.R;
 import edu.vuum.mocca.orm.MoocResolver;
 import edu.vuum.mocca.orm.StoryData;
 
-public class StoryViewFragment extends Fragment {
+public class StoryViewFragment2 extends Fragment {
 
 	private static final String LOG_TAG = StoryViewFragment.class
 			.getCanonicalName();
