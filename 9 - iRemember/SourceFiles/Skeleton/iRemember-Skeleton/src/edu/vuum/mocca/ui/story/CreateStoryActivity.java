@@ -260,6 +260,7 @@ public class CreateStoryActivity extends StoryActivityBase {
 		// getOutputMediaFile to create a new filename for this specific image;
 		Uri file = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 		//PIC_URI = file;
+		fragment.imagePath = file;
 		// TODO - Add the filename to the Intent as an extra. Use the Intent-extra name
 		// from the MediaStore class, EXTRA_OUTPUT
 		i.putExtra(MediaStore.EXTRA_OUTPUT, file);

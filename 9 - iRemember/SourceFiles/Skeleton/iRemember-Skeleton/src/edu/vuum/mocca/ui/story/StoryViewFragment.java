@@ -166,7 +166,7 @@ public class StoryViewFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		mContext = getActivity().getApplicationContext();
+		mContext = getActivity();
 		titleTV = (TextView) getView()
 				.findViewById(R.id.story_view_value_title);
 		bodyTV = (TextView) getView().findViewById(R.id.story_view_value_body);

@@ -1,0 +1,11 @@
+02-16 12:42:37.586: I/Lab-Intents(21097): Entered startExplicitActivation()
+02-16 12:42:41.976: I/Lab-Intents(21097): Entered enterClicked()
+02-16 12:42:41.976: I/Lab-Intents(21097): Entered onActivityResult()
+02-16 12:50:00.746: I/Lab-Intents(21983): Entered startImplicitActivation()
+02-16 12:50:00.746: I/Lab-Intents(21983): Chooser Intent Action:android.intent.action.CHOOSER
+02-16 12:50:15.736: I/Lab-Intents(21983): Entered startExplicitActivation()
+02-16 12:50:22.006: I/Lab-Intents(21983): Entered enterClicked()
+02-16 12:50:22.026: I/Lab-Intents(21983): Entered onActivityResult()
+02-16 12:57:32.776: I/Lab-Intents(23617): Entered startExplicitActivation()
+02-16 12:57:34.106: I/Lab-Intents(23617): Entered enterClicked()
+02-16 12:57:34.126: I/Lab-Intents(23617): Entered onActivityResult()
