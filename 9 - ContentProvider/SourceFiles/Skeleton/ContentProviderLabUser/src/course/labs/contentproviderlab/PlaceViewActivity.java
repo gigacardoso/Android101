@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import course.labs.contentproviderlab.provider.PlaceBadgesContract;
 
 public class PlaceViewActivity extends ListActivity implements
 		LocationListener, LoaderCallbacks<Cursor> {
@@ -51,7 +52,7 @@ public class PlaceViewActivity extends ListActivity implements
 
         // TODO - Set up the app's user interface
         // This class is a ListActivity, so it has its own ListView
-		mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), null, 1);
+		Log.i("outro", "1");
 		
         // TODO - add a footerView to the ListView
         // You can use footer_view.xml to define the footer
@@ -60,7 +61,7 @@ public class PlaceViewActivity extends ListActivity implements
 		TextView mFooterView = (TextView) getLayoutInflater().inflate(R.layout.footer_view,null); 
 
 		getListView().addFooterView(mFooterView);
-
+		Log.i("outro", "2");
         // TODO - When the footerView's onClick() method is called, it must issue the
         // following log call
         // log("Entered footerView.OnClickListener.onClick()");
@@ -96,14 +97,14 @@ public class PlaceViewActivity extends ListActivity implements
 				}
 			}
 		});
-		
+		Log.i("outro", "3");
 		// TODO - Create and set empty PlaceViewAdapter
         // ListView's adapter should be a PlaceViewAdapter called mCursorAdapter
+		mCursorAdapter = new PlaceViewAdapter(getApplicationContext(), null, 0);
 		getListView().setAdapter(mCursorAdapter);
-		
+		Log.i("outro", "4");
 		// TODO - Initialize a CursorLoader
-			
-        
+		getLoaderManager().initLoader(1, null, this);
 	}
 
 	@Override
@@ -183,16 +184,16 @@ public class PlaceViewActivity extends ListActivity implements
 		log("Entered onCreateLoader()");
 
 		// TODO - Create a new CursorLoader and return it
-		CursorLoader c = new CursorLoader(getApplicationContext()); 
+		CursorLoader c = new CursorLoader(this, PlaceBadgesContract.CONTENT_URI, null, null, null, null);
         
         return c;
 	}
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> newLoader, Cursor newCursor) {
-
+		Log.i("outro", "5");
 		// TODO - Swap in the newCursor
-		mCursorAdapter.swapCursor(newCursor),
+		mCursorAdapter.swapCursor(newCursor);
 	
     }
 
