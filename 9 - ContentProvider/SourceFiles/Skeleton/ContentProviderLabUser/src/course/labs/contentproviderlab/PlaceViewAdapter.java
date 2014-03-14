@@ -73,12 +73,11 @@ public class PlaceViewAdapter extends CursorAdapter {
 				  do {
 				     list.add(getPlaceRecordFromCursor(newCursor));
 				   } while (newCursor.moveToNext() == true);
-		
-
 			}
             // Set the NotificationURI for the new cursor
 			newCursor.setNotificationUri(mContext.getContentResolver(),
 					PlaceBadgesContract.CONTENT_URI);
+			mContext.getContentResolver().notifyChange(PlaceBadgesContract.CONTENT_URI, null);
 
 		}
 		return newCursor;

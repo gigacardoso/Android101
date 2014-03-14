@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.ListActivity;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -49,7 +50,9 @@ public class PlaceViewActivity extends ListActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		if (null == (mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE)))
+			finish();
         // TODO - Set up the app's user interface
         // This class is a ListActivity, so it has its own ListView
 		Log.i("outro", "1");
@@ -110,19 +113,22 @@ public class PlaceViewActivity extends ListActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		Log.i("outro","r1");
 		mMockLocationProvider = new MockLocationProvider(
 				LocationManager.NETWORK_PROVIDER, this);
-
+		Log.i("outro","r2");
 		// TODO - Check NETWORK_PROVIDER for an existing location reading.
 		// Only keep this last reading if it is fresh - less than 5 minutes old.
 		mLastLocationReading = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		Log.i("outro","r3");
 		if(mLastLocationReading != null && age(mLastLocationReading) < FIVE_MINS){
 			mLastLocationReading = null;
 		}
+		Log.i("outro","r4");
 		
 		// TODO - Register to receive location updates from NETWORK_PROVIDER
 		mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, mMinTime, mMinDistance, this);
+		Log.i("outro","r4");
 	}
 
 	@Override
