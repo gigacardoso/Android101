@@ -58,6 +58,33 @@ public class PlaceViewAdapter extends CursorAdapter {
 			}
 		}
 	}
+	
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		View newView = convertView;
+		ViewHolder holder;
+
+		PlaceRecord curr = list.get(position);
+
+		if (null == convertView) {
+			holder = new ViewHolder();
+			newView = inflater.inflate(R.layout.place_badge_view, null);
+			holder.flag = (ImageView) newView.findViewById(R.id.flag);
+			holder.country = (TextView) newView.findViewById(R.id.country_name);
+			holder.place = (TextView) newView.findViewById(R.id.place_name);
+			newView.setTag(holder);
+			
+		} else {
+			holder = (ViewHolder) newView.getTag();
+		}
+
+		holder.flag.setImageBitmap(curr.getFlagBitmap());
+		holder.country.setText("Country: " + curr.getCountryName());
+		holder.place.setText("Place: " + curr.getPlace());
+
+		return newView;
+	}
 
 	@Override
 	public Cursor swapCursor(Cursor newCursor) {
@@ -65,19 +92,19 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 		if (null != newCursor) {
 
-        // TODO - clear the ArrayList list so it contains
-		// the current set of PlaceRecords. Use the 
-		// getPlaceRecordFromCursor() method to add the
-		// current place to the list
+			// TODO - clear the ArrayList list so it contains
+			// the current set of PlaceRecords. Use the 
+			// getPlaceRecordFromCursor() method to add the
+			// current place to the list
 			if (newCursor.moveToFirst()) {
-				  do {
-				     list.add(getPlaceRecordFromCursor(newCursor));
-				   } while (newCursor.moveToNext() == true);
+				do {
+					list.add(getPlaceRecordFromCursor(newCursor));
+				} while (newCursor.moveToNext() == true);
 			}
-            // Set the NotificationURI for the new cursor
+			// Set the NotificationURI for the new cursor
 			newCursor.setNotificationUri(mContext.getContentResolver(),
 					PlaceBadgesContract.CONTENT_URI);
-			mContext.getContentResolver().notifyChange(PlaceBadgesContract.CONTENT_URI, null);
+			//mContext.getContentResolver().notifyChange(PlaceBadgesContract.CONTENT_URI, null);
 
 		}
 		return newCursor;
@@ -146,14 +173,14 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 			// TODO - Insert new record into the ContentProvider
 			ContentValues values = new ContentValues();
-            values.put(PlaceBadgesContract.FLAG_BITMAP_PATH, listItem.getFlagBitmapPath());
-            values.put(PlaceBadgesContract.COUNTRY_NAME, listItem.getCountryName());
-            values.put(PlaceBadgesContract.PLACE_NAME, listItem.getPlace());
-            values.put(PlaceBadgesContract.LAT, listItem.getLat());
-            values.put(PlaceBadgesContract.LON, listItem.getLon());
+			values.put(PlaceBadgesContract.FLAG_BITMAP_PATH, listItem.getFlagBitmapPath());
+			values.put(PlaceBadgesContract.COUNTRY_NAME, listItem.getCountryName());
+			values.put(PlaceBadgesContract.PLACE_NAME, listItem.getPlace());
+			values.put(PlaceBadgesContract.LAT, listItem.getLat());
+			values.put(PlaceBadgesContract.LON, listItem.getLon());
 
-            mContext.getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, values);
-        }
+			mContext.getContentResolver().insert(PlaceBadgesContract.CONTENT_URI, values);
+		}
 
 	}
 
@@ -167,7 +194,7 @@ public class PlaceViewAdapter extends CursorAdapter {
 
 		// TODO - delete all records in the ContentProvider
 		mContext.getContentResolver().delete(PlaceBadgesContract.CONTENT_URI, null, null);
-        
+
 	}
 
 	@Override

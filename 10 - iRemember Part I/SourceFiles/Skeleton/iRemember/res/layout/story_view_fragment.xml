@@ -125,6 +125,25 @@ University of Maryland to appear in their names.
 	            android:text="@string/story_view_edittext_audio_link_default_value"
 	            android:textAppearance="?android:attr/textAppearanceMedium" />   
 	  <!-- videoLink -->
+	    <FrameLayout
+	        android:id="@+id/story_view_dummy_frame"
+	        android:layout_width="fill_parent"
+	        android:layout_height="200dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginTop="10dp"
+	        android:layout_below="@+id/story_view_value_audio_link">
+
+	        <VideoView
+	            android:id="@+id/story_view_value_video_link"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent" />
+
+	        <View
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:background="@android:color/transparent" />
+
+	    </FrameLayout>
 	    <TextView
 	            android:id="@+id/story_view_label_video_link"
 	            android:layout_width="wrap_content"
